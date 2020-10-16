@@ -1,9 +1,9 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
-
 # Create your models here.
 # from mptt.fields import TreeForeignKey
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -39,7 +39,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     amount = models.IntegerField(default=0)
     minamount = models.IntegerField(default=3)
-    #variant = models.CharField(max_length=10, choices=VARIANTS, default='None')
+    # variant = models.CharField(max_length=10, choices=VARIANTS, default='None')
     detail = models.TextField()
     slug = models.SlugField(null=False, unique=True)
     status = models.CharField(max_length=10, choices=STATUS)
@@ -48,3 +48,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    # method to create a fake table field in read only mode
+    def image_tag(self):
+        if self.image.url is not None:
+            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+
+    image_tag.short_description = 'Image'
