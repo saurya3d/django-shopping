@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+
+from ecom import views
 
 urlpatterns = [
     path('', include('ecom.urls')),
     path('admin/', admin.site.urls),
     path('ecom/', include('ecom.urls')),
-    path('product', include('product.urls')),
-]
+    path('product/', include('product.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('aboutus/', views.aboutus, name='aboutus'),
+    path('contact/', views.contactus, name='contactus'),
+    path('category/<int:id>/<slug:slug>', views.category_products, name='category_products'),
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
