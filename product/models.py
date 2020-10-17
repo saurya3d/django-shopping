@@ -1,3 +1,5 @@
+import uuid
+
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
@@ -20,7 +22,8 @@ class Category(MPTTModel):
     description = models.TextField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(unique=True, default=uuid.uuid1)
+
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
