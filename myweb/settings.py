@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecom.apps.EcomConfig',
     'product.apps.ProductConfig',
+    'order.apps.OrderConfig',
     'ckeditor',
     'ckeditor_uploader',
     'mptt',

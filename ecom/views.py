@@ -7,7 +7,7 @@ from django.shortcuts import render
 # Create your views here.
 from ecom.models import Setting, ContactForm, ContactMessage
 from ecom.forms import SearchForm
-from product.models import Category, Product, Images
+from product.models import Category, Product, Images, Comment
 
 
 def index(request):
@@ -102,16 +102,16 @@ def search_auto(request):
     return HttpResponse(data, mimetype)
 
 
-def product_detail(request,id,slug):
-
+def product_detail(request, id, slug):
     category = Category.objects.all()
 
     product = Product.objects.get(pk=id)
     images = Images.objects.filter(product_id=id)
     products_picked = Product.objects.all().order_by('?')[:4]  # random
-    #comments = Comment.objects.filter(product_id=id,status='True')
-    context = {'product': product,'category': category,
+    comments = Comment.objects.filter(product_id=id, status='True')
+    context = {'product': product, 'category': category,
                'images': images, 'products_picked': products_picked,
+               'comments': comments
                }
 
     return render(request, 'product_detail.html', context)

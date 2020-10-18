@@ -114,7 +114,7 @@ class Comment(models.Model):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['subject', 'comment', 'rate']
+        fields = ['subject', 'comment', 'rate',]
 
 
 class Color(models.Model):

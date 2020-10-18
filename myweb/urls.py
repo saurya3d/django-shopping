@@ -22,16 +22,18 @@ from ecom import views
 
 urlpatterns = [
     path('', include('ecom.urls')),
-    path('admin/', admin.site.urls),
-    path('ecom/', include('ecom.urls')),
     path('product/', include('product.urls')),
+    path('order/', include('order.urls')),
+    path('ecom/', include('ecom.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('aboutus/', views.aboutus, name='aboutus'),
+    path('admin/', admin.site.urls),
+
+
     path('contact/', views.contactus, name='contactus'),
     path('search/', views.search, name='search'),
     path('search_auto/', views.search_auto, name='search_auto'),
     path('category/<int:id>/<slug:slug>', views.category_products, name='category_products'),
     path('product/<int:id>/<slug:slug>', views.product_detail, name='product_detail'),
-
+    path('aboutus/', views.aboutus, name='aboutus'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
