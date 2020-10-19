@@ -92,11 +92,15 @@
 							</div>
 
 							<div class="product-btns">
-								<div class="qty-input">
-									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number">
-								</div>
-								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								<form action="/order/addtoshopcart/{{ product.id }}" method="post" >
+								{% csrf_token %}
+									<div class="qty-input">
+										<span class="text-uppercase">QTY: </span>
+										<input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}" a>
+									</div>
+									<button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								</form>
+
 								<div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -211,6 +215,7 @@
 												{% else %}
 													You must be logged in for review
 												{% endif %}
+												</div>
 											</form>
 
 
@@ -271,7 +276,7 @@
 								<div class="product-btns">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-									<a href="/addtocart/{{ rs.id }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+									<a href="/order/addtoshopcart/{{ rs.id }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								</div>
 							</div>
 						</div>

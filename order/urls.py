@@ -5,5 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),  # ecom
-    #path('addcomment/<int:id>', views.addcomment, name='addcomment'),
+    path('addtoshopcart/<int:id>', views.addtoshopcart, name='addtoshopcart'),
+    path('deletefromcart/<int:id>', views.deletefromcart, name='deletefromcart'),
+
 ]
