@@ -1,6 +1,6 @@
-{% extends 'homebase.html' %}
+{% extends 'ecombase.html' %}
 
-{% block title %}  {{ user.first_name }} Profile {% endblock %}
+{% block title %}  {{ user.first_name }} Profile  Update{% endblock %}
 {% block description %} {{ setting.description }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 
@@ -13,7 +13,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li class="active">User Profile</li>
+                <li class="active">User Profile Update</li>
             </ul>
         </div>
     </div>
@@ -33,46 +33,23 @@
                 <div class="col-md-9">
                     <div class="billing-details">
                         <div class="section-title">
-                            <h3 class="title">User Profile Inf.</h3>
+                            <h3 class="title">User Profile Update</h3>
                         </div>
                     </div>
-                     <table class="shopping-cart-table table">
-                        <tr>
-                            <th class="text-left">
-                                <a href="/user/update" class="primary-btn">Update Profile</a>
-                                <a href="/user/password" class="primary-btn">Change Password</a>
-                            </th>
-                            <td><img src="{{ profile.image.url }}" style="border-radius: 45px; height: 200px "></td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Name Surname</th>
-                            <td class="text-left">{{ user.first_name}} {{ user.last_name}} </td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Email</th>
-                            <td class="text-left">{{ profile.user.email}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Phone</th>
-                            <td class="text-left">{{ profile.phone}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Addres</th>
-                            <td class="text-left">{{ profile.address}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">City</th>
-                            <td class="text-left">{{ profile.city}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Country</th>
-                            <td class="text-left">{{ profile.country}}</td>
-                        </tr>
 
-                    </table>
+                    <form method="POST" enctype = "multipart/form-data">
+                        {% csrf_token %}
+
+                        <fieldset class="form-group">
+                            {{ user_form.as_p  }}
+                            {{ profile_form.as_p  }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="primary-btn" type="submit">Update</button>
+                        </div>
+                    </form>
+
                 </div>
-
-
             </div>
             <!-- /row -->
         </div>

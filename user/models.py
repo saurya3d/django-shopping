@@ -13,9 +13,6 @@ class UserProfile(models.Model):
     country = models.CharField(blank=True, max_length=50)
     image = models.ImageField(blank=True, upload_to='images/users/')
 
-    # language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True, blank=True)
-    # currency = models.ForeignKey(Currency, on_delete=models.CASCADE, null=True, blank=True)
-
     def __str__(self):
         return self.user.username
 
