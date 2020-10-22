@@ -64,13 +64,16 @@
 							<h3 class="product-price">{{ product.price }} <del class="product-old-price">{{ product.price }}</del></h3>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
+									<i class="fa fa-star{% if product.averagereview < 1%}--o empty{% endif %}"></i>
+									<i class="fa fa-star{% if product.averagereview < 2%}--o empty{% endif %}"></i>
+									<i class="fa fa-star{% if product.averagereview < 3%}--o empty{% endif %}"></i>
+									<i class="fa fa-star{% if product.averagereview < 4%}--o empty{% endif %}"></i>
+									<i class="fa fa-star{% if product.averagereview < 5%}--o empty{% endif %}"></i>
+								{{ product.averagereview | stringformat:".2f"}}
 								</div>
-								<a href="#">3 Review(s) / Add Review</a>
+
+
+								<a href="#tab1"> {{ product.countreview }}  Review(s) / Add Review</a>
 							</div>
 							<p><strong>Availability:</strong> In Stock</p>
 							<p><strong>Brand:</strong> E-SHOP</p>
@@ -113,7 +116,7 @@
 						<div class="product-tab">
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">detail</a></li>
-								<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+								<li><a data-toggle="tab" href="#tab2">Reviews {{ product.countreview }}</a></li>
 								<li class="active"><a data-toggle="tab" href="#tab3">description</a></li>
 							</ul>
 							<div class="tab-content">
@@ -202,11 +205,11 @@
 													<div class="input-rating">
 														<strong class="text-uppercase">Your Rating: </strong>
 														<div class="stars">
-															<input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-															<input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+															<input type="radio" id="star5" name="rate" value="1" /><label for="star5"></label>
+															<input type="radio" id="star4" name="rate" value="2" /><label for="star4"></label>
 															<input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-															<input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-															<input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+															<input type="radio" id="star2" name="rate" value="4" /><label for="star2"></label>
+															<input type="radio" id="star1" name="rate" value="5" /><label for="star1"></label>
 														</div>
 													</div>
 												</div>

@@ -104,7 +104,6 @@ def search_auto(request):
 
 def product_detail(request, id, slug):
     category = Category.objects.all()
-
     product = Product.objects.get(pk=id)
     images = Images.objects.filter(product_id=id)
     products_picked = Product.objects.all().order_by('?')[:4]  # random
