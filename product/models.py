@@ -1,11 +1,10 @@
-import uuid
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-# from mptt.fields import TreeForeignKey
+
 from django.db.models import Avg, Count
 from django.forms import ModelForm
 from django.urls import reverse
@@ -25,7 +24,7 @@ class Category(MPTTModel):
     description = models.TextField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField(unique=True, default=uuid.uuid1)
+    slug = models.SlugField(unique=True, null=False)
 
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -52,7 +51,6 @@ class Product(models.Model):
     STATUS = (
         ('True', 'True'),
         ('False', 'False'),
-
     )
 
     VARIANTS = (
@@ -83,7 +81,8 @@ class Product(models.Model):
     def image_tag(self):
         if self.image.url is not None:
             return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
-
+        else:
+            return ""
     image_tag.short_description = 'Image'
 
     def get_absolute_url(self):

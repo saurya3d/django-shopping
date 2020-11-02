@@ -101,7 +101,7 @@ class SizeAdmin(admin.ModelAdmin):
 
 
 class VariantsAdmin(admin.ModelAdmin):
-    list_display = ['title', 'product', 'color', 'size', 'price', 'quantity', 'image_tag']
+    list_display = ['title', 'product', 'color', 'size', 'price', 'quantity', 'image_tag' ]
 
 
 admin.site.register(Category, CategoryAdmin2)

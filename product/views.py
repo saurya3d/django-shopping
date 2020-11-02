@@ -12,7 +12,7 @@ def index(request):
 
 def addcomment(request, id):
     url = request.META.get('HTTP_REFERER')  # get last url
-    #return HttpResponse(url)
+    # return HttpResponse(url)
     if request.method == 'POST':  # check post
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -29,3 +29,7 @@ def addcomment(request, id):
             return HttpResponseRedirect(url)
 
     return HttpResponseRedirect(url)
+
+
+def colors(request):
+    return render(request, 'product_color.html')
