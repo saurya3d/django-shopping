@@ -22,7 +22,7 @@ def addtoshopcart(request, id):
     current_user = request.user  # Access User Session information
     product = Product.objects.get(pk=id)
 
-    checkproduct = ShopCart.objects.filter(product_id=id)
+    #checkproduct = ShopCart.objects.filter(product_id=id)
 
     if product.variant != 'None':
         variantid = request.POST.get('variantid')  # from variant add to cart
